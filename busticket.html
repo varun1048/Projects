@@ -1,0 +1,105 @@
+        <html>
+
+<head>
+    <title>Bus ticket</title>
+</head>
+
+    <body>
+        <center><h1>
+
+            Bus stops <br>
+            <p class="p1">
+
+                From
+                <select id="from">
+                    <option>select</option>
+                    <option>Sholinganallur</option>
+                    <option>Dollar</option>
+                    <option>karapakkam</option>
+                    <option>TCS</option>
+                    <option>okkigampet</option>
+                    <option>PTC</option>
+                    <option>Mettukuppam</option>
+                    <option>Jain college</option>
+                    <option>Thuraipakkam</option>
+                </select>
+                
+                To
+                <select id="to">
+                    <option>select</option>
+                    <option>Sholinganallur</option>
+                    <option>Dollar</option>
+                    <option>Karapakkam</option>
+                    <option>TCS</option>
+                    <option>okkigampet</option>
+                    <option>PTC</option>
+                    <option>Mettukuppam</option>
+                    <option>Jain college</option>
+                    <option>Thuraipakkam</option>
+                </select>
+            </p>
+            
+            <br>
+            Number of ticket <input type="number" id="ticket_count"></input><br>
+            <button type="text" onclick="main()" >submit</sub></button><br><br>
+            
+            Total amount <output id="totel_amount" style="color: red;">0</output><br>
+            Number of tickets:<output id="ticket_out">0</output><br>
+            From<output id="pikup"></output><br>
+            To<output id="drop"></output><br>
+            
+        </h1></center>
+        
+    </body>
+                                        
+    <script>
+        
+        function main(){
+
+        var pikup=document.getElementById("from").selectedIndex;
+        var drop=document.getElementById("to").selectedIndex;
+        var amount=0;
+
+        var ticket=document.getElementById("ticket_count").value;
+        var inner=document.getElementById("from").value;
+        var outer=document.getElementById("to").value;
+
+        if(pikup==drop || pikup==0 || drop==0 || ticket==0){
+            alert("invalid input");
+        }
+
+        else{
+            amount=((drop-pikup)*5)*ticket;
+            document.getElementById("totel_amount").innerHTML="RS."+amount+'/.';
+            document.getElementById("ticket_out").innerHTML=ticket;
+            document.getElementById("pikup").innerHTML='-'+inner;
+            document.getElementById("drop").innerHTML='-'+outer;
+
+        }
+    }
+    </script>
+
+    <style>
+        p.p1{
+            word-spacing: 15px;
+
+        }
+        body{
+            font-family: "Times New Roman", Times, serif;
+            
+        }
+        select{
+            font-size: 25px;
+
+        }
+        button{
+            font-size: 25px;
+
+        }
+        input{
+            font-size: 25px;
+        }
+
+    </style>
+
+</html>

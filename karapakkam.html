@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#r1,#y1,#g1 ,#r2,#y2,#g2,#w{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+/* background-color:black; */
+font-size: 300%; 
+}
+
+#people,p{
+  height: 50px;
+  width: 50px;
+  border-radius: 10%;
+  display: inline-block;
+  background-color:black;
+  color:green;
+}
+
+button{
+  font-size: 1cm
+}
+</style>
+</head>
+<body onload="lights(0)">
+
+  <div style="text-align:center">
+    
+    <h1>karapakkam TCS <br>Traffic light on <d id="c" style="color: lawngreen"></d> one way<br>
+        East----West 
+        <div id="w"></div>
+      <p id="counter" style="color:aliceblue;" >o</p>
+    </h1>
+
+    <div id="r1"></div>
+    <div id="w"></div>
+    <div id="r2"></div>
+    <div id="w"></div>
+    <div id="w"></div>
+
+    <br><br>
+    
+    <div id="y1"></div>
+    <div id="w"></div>
+    <div id="y2"></div>
+    <div id="w"></div>
+    <div id="w"></div>
+
+
+    
+    <br><br>
+    
+    <div id="g1"></div>  
+    <div id="w"></div>
+    <div id="g2">&#11014;</div>
+    <div id="w"></div>
+    <div id="w"></div>
+    <br><br>
+    
+
+    
+    <h1>
+
+      <button id="manual" type="submit" onclick="control('auto')">Auto</button>
+      or
+      <button id="auto" onclick="control('manual')">Manual</button><br>
+
+    </h1>  
+
+  </div>
+
+</body>
+</html> 
+<script>    
+
+  var speed=1000;
+
+  var counter=1;
+  var counting =0;
+  var setin;
+  var switching=10;
+
+  document.getElementById("counter").innerHTML=counting;
+  
+  function control(mode){
+    document.getElementById("c").innerHTML=mode+" mode";
+    counter++;
+    if(counter>1 && mode=="manual"){
+      clearInterval(setin);
+    }
+
+    if(counter%2==0){
+      yellow(3,1,mode);
+    }
+    else{
+      yellow(1,3,mode);
+    }
+  }
+
+function yellow(l1,l2,controlling){
+  var number=0;
+ if(controlling=="auto"){
+    document.getElementById("manual").style.backgroundColor="blue";
+    document.getElementById("auto").style.backgroundColor="white";
+    document.getElementById("counter").style.color="aliceblue "; 
+  }
+  
+  else{
+    document.getElementById("manual").style.backgroundColor="white";
+    document.getElementById("auto").style.backgroundColor="blue";
+    document.getElementById("counter").style.color="black"; 
+
+  }
+  
+   setin =setInterval(function (){
+    counting++;
+    number++;
+    switch(counting){
+      case 1:
+      case 2:
+      case 3:
+        lights(1,1);  
+      if(counting== 3 && controlling=="manual"){
+        clearInterval(setin);
+      }
+
+      break;
+      
+      case 4:
+        number=0;
+      lights(2,2);
+      break;
+
+      case 5:
+      case 7:
+      case 6:
+
+      lights(3,3);
+      if(counting== 5 && controlling=="manual"){
+        clearInterval(setin); 
+        }
+
+      break;
+
+      case 8:
+      lights(2,2);
+      counting=0;
+      number=0;
+      break;
+
+    }
+    
+    document.getElementById("counter").innerHTML=number;
+  
+  },speed);
+  
+}
+
+
+function lights(l1,l2){
+document.getElementById("r1").style.backgroundColor="black";
+document.getElementById("y1").style.backgroundColor="black";
+document.getElementById("g1").style.color="black";
+document.getElementById("g1").style.backgroundColor="black";
+
+document.getElementById("r2").style.backgroundColor="black";
+document.getElementById("g2").style.color="black";
+document.getElementById("g2").style.backgroundColor="black";
+document.getElementById("y2").style.backgroundColor="black";
+
+
+  switch(l1){  
+    case 1:
+    document.getElementById("r1").style.backgroundColor="red";
+    
+    document.getElementById("g1").style.color="green";    
+    document.getElementById("g1").innerHTML="&#8631;";    
+  break;
+  
+  case 2:
+  document.getElementById("y1").style.backgroundColor="yellow";  
+  break;
+
+  case 3:
+  document.getElementById("g1").style.color="green";
+  document.getElementById("g1").innerHTML="&#11014;";    
+
+  break;
+  }
+
+  switch(l2){
+  
+  case 1:
+  document.getElementById("r2").style.backgroundColor="red";
+
+  document.getElementById("g2").style.color="green";
+  document.getElementById("g2").innerHTML="&#8630;";
+
+
+  break;
+
+  case 2:
+  document.getElementById("y2").style.backgroundColor="yellow";
+  break;
+
+  case 3:
+  document.getElementById("g2").style.color="green";
+  document.getElementById("g2").innerHTML="&#11014;";    
+  break;
+  }
+  
+}
+
+
+
+</script>

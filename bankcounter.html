@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        
+  
+    <title>Bank counter</title>
+   
+</head>
+
+    <body style="text-align:center;">
+
+        <h2>
+            <center>
+                Token 
+                <button type="text" id="input" onclick="count()">
+                @
+                </button>
+                <h2 id="display" ></h2>
+            </center>
+        
+        <h2><br><br><br><br>
+        
+        <h1>
+            <center>
+
+                Cabin | Token<br>
+                A
+                <display id="a">counter closed</display><br>
+                B
+                <display id="b">counter closed</display><br>
+                C
+                <display id="c">counter closed</display><br>
+            </center>
+                
+        <h1>
+
+
+        
+        <div><br><br><br>
+            <center>
+                COUNTER<br>
+                <button type="button" onclick="counter(1)">A</button>
+                <button type="button" onclick="counter(2)">B</button>
+                <button type="button" onclick="counter(3)">C</button>
+                
+            </center>
+            
+        </div>
+        
+
+        
+    </body>
+
+
+    <script>
+
+        var value=0;
+        var number=0;
+
+        function count()
+        {
+            number++;
+            document.getElementById("display").innerHTML='your token number ..' + number;
+        }
+
+        function counter(number)
+        {
+            value++;
+            if(number==1){
+                console.log(document.getElementById('a'));
+                document.getElementById("a").innerHTML="|"+value;
+            }
+
+            if(number==2){
+                document.getElementById("b").innerHTML="|"+value;
+            }
+            
+            if(number==3){
+                document.getElementById("c").innerHTML='|'+value;
+            }
+        }
+
+    </script>
+
+    <style>
+         
+        h2 {
+            height: 100px;
+            width: 250px;
+            background-color:orange;
+
+        }
+
+        button{
+            height: 50px;
+            width: 75px;
+            background-color:blueviolet;
+        }
+
+        body{
+            background-color: black;
+            color:red
+        }
+
+        h1{
+            width: 300px;
+            border: 15px solid green;
+            padding: 25px;
+            margin: 10px;
+        }
+
+    </style>
+
+</html>

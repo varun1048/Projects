@@ -1,0 +1,100 @@
+
+<head>
+    <title>Document</title>
+</head>
+<body><center>
+<br>
+        <button id="a11"  onclick="document.getElementById('a11').innerHTML=fun(1,1)"></button> 
+        <button id="a12"  onclick="document.getElementById('a12').innerHTML=fun(1,2)"></button>
+        <button id="a13"  onclick="document.getElementById('a13').innerHTML=fun(1,3)"></button><br>
+      
+
+
+        <button id="a21"  onclick="document.getElementById('a21').innerHTML=fun(2,1)"></button>
+        <button id="a22"  onclick="document.getElementById('a22').innerHTML=fun(2,2)"></button>
+        <button id="a23"  onclick="document.getElementById('a23').innerHTML=fun(2,3)"></button><br>
+      
+
+        <button id="a31"  onclick="document.getElementById('a31').innerHTML=fun(3,1)">  </button>
+        <button id="a32"  onclick="document.getElementById('a32').innerHTML=fun(3,2)">  </button>
+        <button id="a33"  onclick="document.getElementById('a33').innerHTML=fun(3,3)">  </button> <br><br>
+        
+
+    </center></body>
+    
+    </html>
+    <script>
+    var count=0;
+    var a=[[]];
+    var i,j,k;
+
+    function fun(x,y){
+        count++;
+
+
+        if(count==2 || count==4 || count==6 || count==8){
+           
+            a[[x,y]]='o';            
+            check('o');          
+            return 'o';
+            
+        }
+
+               
+        if(count==9){
+            
+            alert("\n\n\tMatch draw");
+            return location.reload();
+        }       
+        else {
+           
+            a[[x,y]]='x';
+            check('x');
+            return 'x';
+
+
+        }
+    }
+
+    function check(v){
+        
+
+       try{        
+
+            if(a[[1,3]] == v && a[[2,2]] ==v  && a[[3,1]] == v)throw v;
+            if(a[[1,1]] == v && a[[2,2]] ==v  && a[[3,3]] == v) throw v;
+            
+            for(i=1;i<=3;i++){
+
+                if(a[[i,1]] == v && a[[i,2]] == v && a[[i,3]] == v)throw v;
+                if(a[[1,i]] == v && a[[2,i]] == v && a[[3,i]] == v)throw v;   
+            }
+        }
+
+       catch(v){
+            alert(v + " won game  " );
+            return location.reload();
+        }
+
+
+    }
+        
+
+
+   
+
+</script>
+<style>
+ 
+    
+button {
+
+    padding: 50px 50px;
+     margin: 0 10px;
+    border-width:50px;  
+    /* border-bottom-style:initial; */
+    font-size: 60px;
+    text-decoration: none;
+
+}
+</style>
