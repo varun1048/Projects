@@ -1,0 +1,498 @@
+
+<!-- Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@varun1048 
+varun1048
+/
+Onwork_html
+Private
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Settings
+Onwork_html/atm.html
+@varun1048
+varun1048 Add files via upload
+Latest commit a03ff98 on Apr 23
+ History
+ 1 contributor
+457 lines (328 sloc)  13 KB
+   -->
+<style>
+
+        #header{
+            color:red;
+
+        }
+        
+        #pin{
+            text-align: center;
+            /* color:red; */
+            /* height: 420px;
+            width: 410px;
+            border: 15px solid green; */
+        }
+
+        input{
+            color:black;
+            border: 5px solid black;
+            text-align: center;
+            font-size: 2ch;
+        }
+        button{
+            font-size: 2ch;
+            color: green;
+        }
+
+        #pament{
+            color: red;
+        }
+
+        table, th, td {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+    </style>
+
+    <html>
+        <title>V ATM</title>
+        
+        
+        
+        <body style="text-align: center;"> 
+            
+            <h1 id="header">VELS Automated teller machine</h1>
+
+            <h1 id="insert">
+                <button onclick="display(2)">Insert the card</button>
+            </h1>
+
+            <h1 id="password">
+            
+                PIN NUMBER <br>
+                <input  type="password" id="pin"><br><br>
+
+                <button onclick="pass()">ok</button><br>
+                <button onclick="display(0)">back</button><br>    
+                <!-- document.getElementById('pin').remove(); -->
+            
+            </h1>
+
+            
+            <h1 id="language">
+                <button onclick="display(1)">English</button><br>
+                <button onclick="language()">Tamil</button><br>
+                <button onclick="language()">Hindi</button><br>  
+                <button onclick="display(1)">back</button><br> 
+            </h1>
+
+            <h1 id="choose">
+                <button onclick="display(7)">Withdraw</button><br>
+                <button onclick="control('d')">deposit</button><br>
+                <button onclick="control('m')">send money</button><br>
+                <button onclick="control('s')">statement</button><br>
+                <button onclick="display(0)">back</button><br> 
+            </h1>
+
+            <div id="scc">
+                
+                <button onclick="control('w')" id="savings">savings account</button><br>
+                <button onclick="control('w')" id="current" >current account</button><br>
+                <button onclick="control('w')" id="credit">credit account</button><br>
+                <button onclick="display(3)">back</button><br> 
+
+
+            </div>
+
+            <div id="payment">
+
+                <h1 id="output"></h1>
+                <h1>
+
+                    <input  id="amount"></input><br>
+                    <button onclick="prossces()">ok</button><br>
+                    <button onclick="display(3)">back</button><br> 
+                
+                </h1>
+
+
+            </div>
+
+            <div id="statement">
+                
+                <h1 style="color:green;">
+                    Name: <d id="st_name"></d><br>
+                    Account number :<d id="st_account_number"></d><br>
+                    Main balance:<d id="st_balance"></d><br><br>
+                    Transaction
+                        <p id="loop"></p>
+                        <d id="st_account"></d> amount <d id="st_amount"></d>Rs<br>
+                        
+        
+                    <button onclick="display(3)">back</button><br> 
+
+                </h1>
+
+            </div>
+
+
+
+            <div id="send_money">
+
+                    <h1>
+                        Account No for send:
+                        <input id="send_account_number"></input><br>
+                        Amount:
+                        <input id="send_amount"></input><br>
+                        <button type="submit" onclick="prossces()">submit</button>
+                        
+                    <br><br><button onclick="display(3)">back</button><br> 
+
+                    </h1>
+        
+                </div>
+
+        </body>
+            
+    </html>
+
+    <Script>
+        display(0);
+
+        var pin=document.getElementById('pin');
+        var pro_function;
+        var account_user;
+        
+        var counting=1;
+        counter = {
+            amount:[100],
+            account:[100],
+            date:[100],
+            scc:[100],
+            name:[100],
+        }     
+           
+        function prossces(){
+            var input_amount=document.getElementById('amount'); 
+            var input_send_account=document.getElementById('send_account_number'); 
+            var input_send_amount=document.getElementById('send_amount');
+
+            main=server.member[account_user];
+            
+            // console.log(pro_function +"this to a transaction amount");
+            
+            
+            switch(pro_function){
+                case 'w':
+                transaction.withdraw(input_amount.value,account_user);
+                display(3)  ;                                           
+                break;
+                
+                case 'd':
+                    transaction.deposit(input_amount,account_user);
+                    display(3) ;
+                break;
+                    
+                case 'm':
+                transaction.send(input_send_amount.value,account_user,input_send_account.value);
+                display(3) ;
+                break;
+            }
+
+        }
+
+
+        function control(t){
+        var out=document.getElementById('output');
+            display(4);
+            switch(t){
+                case 'w':
+                out.innerHTML="Cash withdraw ";
+                                                
+                break;
+
+                case 'd':
+                out.innerHTML="Dposit amount";                        
+                break;
+
+                case 's':
+                out.innerHTML="Statement";
+                transaction.statement(account_user);  
+                display(5) ;                      
+                break;
+
+                case 'm':
+                out.innerHTML="send money";   
+                display(6) ;                     
+                break;
+
+            }
+        return pro_function=t;   
+        }
+
+        function pass(){
+            if(pin.value==999 ){  // || pin.value>=9999
+                alert("invalued input");
+            }
+            else{
+                for(i=0;i<=server.member.length-1;i++){
+                    if(server.member[i].pin==pin.value){
+                        account_user=i; // global variable
+                        alert("welcome "+server.member[i].name);
+                    return  display(3);
+                    }
+                }
+            }
+        }
+        
+    
+
+
+        transaction={
+
+            withdraw(amount,account){
+                
+                if(amount<=499 ){
+                    alert("minimum amount ot withdraw !");
+                }
+
+                else if (amount>=server.member[account].balance){
+                    alert("Insufficient balance");
+                }
+                else{
+                    
+                    server.member[account].balance = server.member[account].balance - amount;
+                    console.log(server.member[account]);
+
+
+                    
+                    counter.amount[counting]=amount;
+                    counter.account[counting]='withdraw';
+                    counting++;
+                    alert("transactional has been completed");
+                }
+            },
+
+            deposit(amount,account){
+
+                if(amount <=499 ){
+                    alert("minimum amount ot withdraw !");
+                }
+
+                else{
+
+                    var a=  parseInt(server.member[account].balance);
+                    var b=  parseInt(amount.value);
+                    
+                    server.member[account].balance =a+b;
+                    console.log(server.member[account]);
+
+                    counter.amount[counting]=amount.value;
+                    counter.account[counting]='deposit';
+                    counting++;
+                    alert("transactional  completed");
+                }
+                
+            },
+
+            statement(account){
+                var display_st=server.member[account];
+                var name=document.getElementById('st_name');
+                var account_number=document.getElementById('st_account_number');
+                var balance=document.getElementById('st_balance');
+                
+
+                name.innerHTML= display_st.name;
+                account_number.innerHTML=display_st.accountNo;
+                balance.innerHTML=display_st.balance;   
+
+                for(i=1;i<=counting-1;i++){
+                // alert(counter.amount[i]);
+                    // loop(i);
+                    console.log(counter.amount[i])
+                    document.getElementById("st_amount").style="color:black";
+                    document.getElementById("st_amount").innerHTML=counter.amount[i];
+                    document.getElementById("st_account").innerHTML=counter.account[i];
+                    
+                    // document.getElementById("st_amount").innerHTML=counter.[i];
+                 }
+            },
+
+            
+            send(amount,account,a2){
+                for(i=0;i<=server.member.length-1;i++){
+                    
+                    if(a2==server.member[i].accountNo){
+                        
+
+                        server.member[account].balance= server.member[account].balance-amount;
+
+                        var a =  parseInt(server.member[i].balance);
+                        var b =  parseInt(amount);
+                            
+                            server.member[i].balance =a+b;
+
+                        server.member[i].balance=a+b;
+
+                    counter.amount[counting]=amount;
+                    counter.account[counting]='Ssend';
+                    counter.name[counting]=a2;
+                    counting++;
+
+                    return alert("transactional completed");
+                    }
+
+                }
+
+                return alert("invalude user account number");  
+            },
+        
+
+        
+        }
+        
+        // var j=0;
+        // function loop(i){
+        //     j++;
+        //         var create=document.getElementById("loop")[100];
+        //         create[j].innerHTML=counter.account[i]+" amount "+counter.amount[i]+" Rs/- <br>";
+        //         document.body.appendChild(create);
+
+        // }
+
+
+            
+
+    function language(){
+        alert("this language is not available")
+    }
+
+    function  display(i){
+            document.getElementById('insert').style = "display : none";
+            document.getElementById('password').style = "display : none";
+            document.getElementById('language').style = "display : none";
+            document.getElementById('choose').style = "display : none";
+            document.getElementById('payment').style = "display : none";
+            document.getElementById('statement').style = "display : none";
+            document.getElementById('send_money').style = "display : none";
+            document.getElementById('scc').style = "display : none";
+
+
+            switch(i){
+                
+                case 0:
+                document.getElementById('insert').style = "display";
+                break;
+
+                case 1:
+                document.getElementById('password').style = "display";
+                break;
+
+                case 2:
+                document.getElementById('language').style = "display";                       
+                break;
+
+                case 3:
+                document.getElementById('choose').style = "display";    
+                break;
+
+                case 4:
+                document.getElementById('payment').style = "display";    
+                break;
+
+                case 5:
+                document.getElementById('statement').style = "display";    
+                break;
+
+                case 6:
+                document.getElementById('send_money').style = "display";    
+                break;
+
+                case 7:
+                document.getElementById('scc').style = "display";    
+                break;
+        
+            }
+        }
+
+        server={
+        member:[
+            user={
+                pin:1,
+                name:'admin',
+                balance:10000,
+                accountNo:123
+
+            },
+            user1={
+                pin: 1954,
+                name:"kamal hassan",
+                balance:11000,
+                accountNo:11,
+            },
+            user2={
+                pin:1950,
+                name:"rajinikanth",
+                balance:114000,
+                accountNo:12,
+            },
+            user3={
+                pin:1974,
+                name:"thlapathy vijay",
+                balance:10000,
+                accountNo:13,
+            },
+            user4={
+                pin:1971,
+                name:"thala ajth",
+                balance:10500,
+                accountNo:14,
+            },
+            user5={
+                pin:1048,
+                name:"sathish anna",
+                balance:5000,
+                accountNo:15,
+            },
+
+            user6={
+                pin:2002,
+                name:"Arockiya Selvi Mam ",
+                balance:50000,
+                accountNo:2001,
+            },
+
+            user7={
+                pin:2001,
+                name:"saravanamuthu",
+                balance:20000,
+                accountNo:3007,
+            },
+        ]
+    }
+    </script>
+<!-- © 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About -->
