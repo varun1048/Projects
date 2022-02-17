@@ -1,0 +1,5 @@
+*.jpeg
+db.sqlite3
+*.sqlite3
+fees.jpg
+logo.png
