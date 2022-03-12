@@ -1,0 +1,57 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+
+
+<div class="container m-3 d-flex justify-content-center">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      {% for message in messages %}
+       <h2>{{ message }}</h2>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container m-3 d-flex justify-content-center">
+
+    <form style="width: 300px;" method="post" action="{{url_for('login')}}">
+        <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off" name="name">
+    </div>
+    
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" value="boss" id="flexRadioDefault2" >
+        <label class="form-check-label" for="flexRadioDefault2">
+        Boss
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" value="manager"  id="flexRadioDefault1" checked>
+        <label class="form-check-label" for="flexRadioDefault1">
+        Manager
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" value="uploader"  id="flexRadioDefault1" >
+        <label class="form-check-label" for="flexRadioDefault1">
+        Uploader
+        </label>
+      </div>      
+
+
+    <button type="submit" class="btn btn-primary m-3">Submit</button>
+</form>
+</div>  
+
+<a href="/informer">Informer</a>
+
+{%endblock%}

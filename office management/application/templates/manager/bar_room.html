@@ -1,0 +1,45 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'manager/navbar.html'%}
+
+<div class="container text-center">
+    <h1>Not attend</h1>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Manager</th>
+                <th>Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for employee in data%}
+            <tr>
+                <td scope="row">
+                    <a href="/manager/employee/{{employee ._id}}/{{manager._id}}" class="btn">
+
+                        {{employee['name']}}
+                    </a>
+                </td>
+                <td scope="row">{{employee['number']}}</td>
+                <td scope="row">{{employee['manager_name']}}</td>
+
+                <td scope="row">
+                    {%if  employee.area %}
+                    <h5 class="text-danger" > Outsider </h5>
+                    {% else %}
+                    <span class="h5">{{employee['area']}}</span>
+                    {%endif%}
+
+                </td>
+            </tr>
+            {%endfor%}
+
+        </tbody>
+
+    </table>
+    </div>
+
+
+    {%endblock%}

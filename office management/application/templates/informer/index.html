@@ -1,0 +1,63 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+
+
+<div class="container text-center">
+
+    <div class="d-flex justify-content-center m-4">
+        
+        <form style="width: 300px;" method="post" action="{{url_for('informer_blueprint.employee_list')}}">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Employee name" autocomplete="off" name="search">
+            </div>
+
+            <button type="submit" class="btn btn-primary ">Search</button>
+
+        </form>
+    </div>
+
+
+ 
+    <div class="">
+        <h4 class="m-2">  Result   </h4>
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th> Voter id</th>
+                    <th> Father name</th>
+                    <th> Date of birth</th>
+                    <th>Polling Booth Number</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                {%for employee in employee_list%}
+                <tr onclick="window.location='/informer/employee/{{employee._id}}' ">
+
+
+                    <td> {{employee['name']}} </td>
+                    <td> {{employee['voter_id']}} </td>
+                    <td> {{employee['father_name']}} </td>
+                    <td> {{employee['dob']}} </td>
+                    <td> {{employee['polling_booth']}} </td>
+
+
+
+
+
+                </tr>
+                {%endfor%}
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+{%endblock%}

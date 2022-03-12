@@ -1,0 +1,79 @@
+{%extends 'layout.html'%} {%block content%} {% include 'boss/navbar.html'%}
+
+<div class="container text-center P-3 ">
+    <h2 class="">{{ data['name']}}
+
+        <small>Manager</small>
+    </h2>
+    <div class="row">
+
+        <div class="col">
+
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{data['amount']}}</h1>
+                    <small>Balance amount</small>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{data['total_amount']}} <small>Total amount</small></h3>
+
+                    <p class="card-text">salary given <b> {{ (data['salary_list'] | length)*10 }} </b>for <b> {{
+                            data['salary_list'] | length }} </b> employees </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+
+
+            <form style="width: 300px;" method="post" action="{{url_for('boss_blueprint.update_manager')}}">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Amount</label>
+                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        autocomplete="off" name="amount">
+                </div>
+                <input type="text" id="element" name="_id" value="{{data['_id']}}">
+                <input type="text" id="element2" name="total_amount" value="{{data['total_amount']}}">
+                <input type="text" id="element3" name="balance_amount" value="{{data['amount']}}">
+
+
+                <button type="submit" class="btn btn-primary m-3">Submit</button>
+            </form>
+
+            <script>
+                document.getElementById("element").style.display = "none";
+                document.getElementById("element2").style.display = "none";
+                document.getElementById("element3").style.display = "none";
+            </script>
+        </div>
+    </div>
+
+    <div class="row m-3 ">
+        <h2>Salary given Employee list </h2>
+        <table class="table">
+            <thead>
+
+                <tr>
+                    <th scope="col">Name</th>
+                    <th ">Attendance</th>
+                    <th ">Outsider</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {%for employee in salary_list %}
+                <tr>
+                    <th scope="row">{{employee['name']}}</th>
+                    <th scope="row">{{employee['attendance']}}</th>
+                    <th scope="row">{{employee['area']}}</th>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{%endblock%}

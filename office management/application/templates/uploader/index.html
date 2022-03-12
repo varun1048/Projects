@@ -1,0 +1,81 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+{% include 'uploader/navbar.html'%}
+
+
+<div class="container  d-flex justify-content-center">
+  <form style="width: 300px;" method="post" action="{{url_for('uploader_blueprint.uploader')}}">
+    <!-- <label for="exampleInputEmail1" class="form-label">Employee name</label> -->
+    <!-- <div class="mb-3">
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Employee name" autocomplete="off"  required name="name">
+        </div> -->
+
+    <div class="form-floating m-1 ">
+      <input type="text" placeholder=" " name="name" class="form-control " autocomplete="off"  required required>
+      <label for="name">Full name</label>
+    </div>
+
+    <div class="form-floating m-1">
+      <input type="text" placeholder=" " name="voter_id" class="form-control " autocomplete="off"  required >
+      <label for="voter_id"> Voter id</label>
+    </div>
+
+    <div class="form-floating m-1">
+      <input type="text" placeholder=" " name="father_name" class="form-control " autocomplete="off"  required >
+      <label for="father_name"> Father Name</label>
+    </div>
+
+    <div class="form-floating m-1">
+      <input type="date" placeholder=" " name="dob" class="form-control " autocomplete="off"  required >
+      <label for="number">Date of Birth</label>
+    </div>
+
+
+    <div class="form-floating m-1">
+      <input type="text" placeholder=" " name="address" class="form-control " autocomplete="off"  required >
+      <label for="address"> Address</label>
+    </div>
+
+    <div class="form-floating m-1">
+      <input type="number" placeholder=" " pattern="\d*" maxlength="10" name="number" class="form-control "  autocomplete="off"  required 
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+      <label for="number"> Mobile Number</label>
+    </div>
+
+    
+
+    <div class="form-check form-check-inline m-2">
+      <input class="form-check-input" type="radio" name="area" id="area" >
+      <label class="form-check-label" for="area">Outsiders</label>
+    </div>
+
+
+
+    <div class="form-floating m-1">
+      <input type="number" placeholder=" " name="polling_booth" class="form-control " autocomplete="off"  required >
+      <label for="polling_booth"> Polling Booth</label>
+    </div>
+
+
+
+
+    <input type="text" id="element1" value="{{session.user._id}}" name="uploader_id">
+    <button type="submit" class="btn btn-primary m-3">upload</button>
+    <script>document.getElementById("element1").style.display = "none";</script>
+  </form>
+
+
+</div>
+
+<div class="container m-3 d-flex justify-content-center">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <h2>{{ message }}</h2>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</div>
+
+{%endblock%}

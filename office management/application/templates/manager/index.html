@@ -1,0 +1,31 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'manager/navbar.html'%}
+
+<div class="container text-center">
+  <div class="card">
+    <div class="card-header">
+      <h1>{{manager['amount']}}</h1>
+      <small>Balance amount</small>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{manager['total_amount']}} <small>Total amount</small></h3>
+      
+      <p class="card-text">salary given <b> {{ (manager['salary_list'] | length)*10  }} </b>for <b> {{ manager['salary_list'] | length }} </b> employees </p>
+
+      <form method="post" action="{{url_for('manager_blueprint.search_list')}}">
+        
+        <input class="form-control me-2" type="text" id="element6" value="" name="search" autocomplete="off">
+        <input type="text" name="manager_id" id="element5" value="{{session.user._id}}">
+        <button type="submit" class="btn btn-primary">Give salary </button>
+      </form>
+
+      <script>
+        document.getElementById("element5").style.display = "none";
+        document.getElementById("element6").style.display = "none";
+    </script>
+
+    </div>  
+  </div>
+</div>
+{%endblock%}

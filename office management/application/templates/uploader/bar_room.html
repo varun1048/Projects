@@ -1,0 +1,80 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'uploader/navbar.html'%}
+
+<div class="container text-center">
+
+    <div class="d-flex justify-content-center">
+        
+        <form style="width: 300px;" method="post" action="{{url_for('uploader_blueprint.bar_room')}}">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Employee name" autocomplete="off" name="name">
+            </div>
+            <input type="text" id="element1" value="{{session.user._id}}" name="uploader_id">
+
+            <button type="submit" class="btn btn-primary ">Search</button>
+            <script>
+                document.getElementById("element1").style.display = "none";
+
+            </script>
+        </form>
+    </div>
+
+
+ 
+    <div class="">
+        <h4 class="m-2">  Result {{data | count}}   </h4>
+        
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th> Voter id</th>
+                    <th> Father name</th>
+                    <th> Number</th>
+                    <th>Outsider</th>
+                    <th> Salary</th>
+                    <th> Manager_name</th>
+                    <th> Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for employee in data%}
+                <tr>
+                    <td scope="row">
+                        <a href="/uploader/employee/{{employee ._id}}" class="btn">
+                            {{employee['name']}}
+                        </a>
+                    </td>
+
+                    <td> {{employee['voter_id']}} </td>
+                    <td> {{employee['father_name']}} </td>
+                    <td> {{employee['number']}} </td>
+                    <td> {{employee['area']}} </td>
+                    <td> {{employee['salary']}} </td>
+                    <td> {{employee['manager_name']}} </td>
+
+
+
+
+                    <td scope="row">
+                        {%if not employee.attendance %}
+                        <a class="btn  btn-outline-danger" href="/uploader/attendance/{{employee._id}}"> Attend </a>
+                        {% else %}
+                        <span class="h5">attend</span>
+                        {%endif%}
+
+                    </td>
+                </tr>
+                {%endfor%}
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+    {%endblock%}

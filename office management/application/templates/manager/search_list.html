@@ -1,0 +1,49 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'manager/navbar.html'%}
+
+<div class="container">
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+
+        <th> Voter id</th>
+        <th> Father name</th>
+        <th> Number</th>
+        <th>Outsider</th>
+        <th> Salary</th>
+        <th> Manager_name</th>
+        <th> Attendance</th>
+        
+
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+      {%for employee in data['search_list']%}
+      <tr onclick="window.location='/manager/employee/{{employee._id}}/{{manager._id}}' ">
+        <th scope="row">{{employee['name']}}</th>
+        <td> {{employee['voter_id']}} </td>
+        <td> {{employee['father_name']}} </td>
+        <td> {{employee['number']}} </td>
+        <td> {{employee['area']}} </td>
+        <td> {{employee['salary']}} </td>
+        <td> {{employee['manager_name']}} </td>
+        <td> {{employee['attendance']}} </td>
+        
+
+      </tr>
+      {%endfor%}
+
+    </tbody>
+
+
+  </table>
+</div>
+
+  
+{%endblock%}

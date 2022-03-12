@@ -1,0 +1,45 @@
+{%extends 'layout.html'%} {%block content%} {% include 'manager/navbar.html'%}
+<nav class="navbar m-1   members_attendance ">
+    <div class="container-fluid">
+        <div class="navbar ">
+            <h3>Employee {{data['employee_count']}}</h3>
+        </div>
+
+        <div class="d-flex">
+            <ul class="nav nav-pills nav-fill ">
+
+
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+            {%for data in data['employee_list']%}
+            <!-- <tr onclick="window.location='employee/{{data._id}}-{{session.user._di}}' "> -->
+            <tr onclick="window.location='manager/'">
+                <th scope="row">{{data['name']}}</th>
+            </tr>
+            {%endfor%}
+
+        </tbody>
+
+
+    </table>
+</div>
+
+
+{%endblock%}

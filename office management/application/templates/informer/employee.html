@@ -1,0 +1,30 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+<div class="container text-center ">
+    <div class="d-flex justify-content-center">
+        <h1>{{data['name']}} <span class="text-muted h5"> {{by_type}} </span></h1>
+
+
+    </div>
+    
+    <div class="d-flex justify-content-center">
+
+        <ul class="list-group " style="width: 400px;">
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Voter Id<span class="h5">{{data['voter_id']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Father Name<span class="h5">{{data['father_name']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Date of birth<span class="h5">{{data['dob']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Address<span class="h5">{{data['address']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Polling Booth<span class="h5">{{data['polling_booth']}}</span></li>
+
+        </ul>
+    </div>
+
+
+
+</div>
+
+
+
+
+{%endblock%}

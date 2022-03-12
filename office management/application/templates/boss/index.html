@@ -1,0 +1,41 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'boss/navbar.html'%}
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 m-4">
+  <div class="col">
+    <a class="card m-1 btn " href="/boss/search_by_type/manager">
+      <img src="/static/images/manager.webp" class="card-img-top " alt="manager.webp">
+      <div class="card-body">
+        <h1 >Managers {{manager}}</h1>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </a>
+  </div>
+  
+  <div class="col">
+    <a class="card btn " href="/boss/search_by_type/employee">
+      <img src="/static/images/Employees.png" class="card-img-top" alt="Employees.png">
+      <div class="card-body">
+        <h1 class="card-title ">Employees {{employee}}</h1>
+
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col">
+    <a class="card btn" href="/boss/search_by_type/uploader">
+      <img src="/static/images/uploaders.jpg" class="card-img-top m-1" alt="uploaders.jpg">
+      <div class="card-body">
+        <h1 class="card-title " >Uploaders {{uploader}}</h1>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content.</p>
+      </div>
+    </a>
+  </div>
+
+</div>
+{%endblock%}

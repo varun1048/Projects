@@ -1,0 +1,52 @@
+{%extends 'layout.html'%} {%block content%} {% include 'manager/navbar.html'%}
+
+<div class="container text-center P-3 ">
+    <h2 class="">{{ data['name']}}
+
+        <small>employee</small>
+    </h2>
+
+    
+    <div class="d-flex justify-content-center">
+
+        <ul class="list-group " style="width: 600px;">
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Number<span class="h5">{{data['number']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Voter Id<span class="h5">{{data['voter_id']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Father Name<span class="h5">{{data['father_name']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Date of birth<span class="h5">{{data['dob']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Address<span class="h5">{{data['address']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Polling Booth<span class="h5">{{data['polling_booth']}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center m-1">Area<span class="h5">{{data['area']}}</span></li>
+
+        </ul>
+    </div>
+
+
+    {%if data['salary'] %}
+    <button  class="btn btn-primary m-3" disabled>
+        Salary given by {{data['manager_name']}} 
+    </button>
+
+    {%else%}
+    <form action="{{url_for('manager_blueprint.update_employee')}}" method="post">
+        
+        <input type="text" id="element1" value="{{session.user._id}}" name="manager_id">
+        <input type="text" id="element2" value="{{session.user.amount }}" name="manager_amount">
+        <input type="text" id="element3" value="{{data['_id']}}" name="employee_id"> 
+        <input type="submit" class="btn btn-primary m-3" value="salary"> 
+        
+
+    </form>
+
+
+
+    {%endif%}
+
+    <script>
+        document.getElementById("element1").style.display = "none";
+        document.getElementById("element2").style.display = "none";
+        document.getElementById("element3").style.display = "none";
+    </script>
+</div>
+
+{%endblock%}

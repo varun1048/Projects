@@ -1,0 +1,60 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'boss/navbar.html'%}
+<nav class="navbar m-1    " >
+    <div class="container-fluid">
+    <div class="navbar ">
+       <h3> {{by_type | upper}} {{count }}  </h3>
+    </div>
+      <div class="d-flex">
+        <ul class="nav nav-pills nav-fill "  >
+
+
+        </ul>
+        
+
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th >  Voter id</th>
+        <th >  Father name</th>
+        <th >  Number</th>
+        <th >Outsider</th>
+        <th >  Salary</th>
+        <th >  Manager_name</th>
+        <th >  Attendance</th>
+        
+      </tr>
+    </thead>
+
+
+
+    <tbody >
+      {%for data in documents%}
+      <tr onclick="window.location='/boss/{{by_type}}/{{data._id}}' ">
+        <th scope="row">{{data.name}}</th>
+        <td > {{data.voter_id}} </td>
+        <td > {{data.father_name}} </td>
+        <td > {{data.number}} </td>
+        <td > {{data.area}} </td>
+        <td > {{data.salary}} </td>
+        <td > {{data.manager_name}} </td>
+        <td > {{data.attendance}} </td>
+      </tr>
+      {%endfor%}
+
+    </tbody>
+
+
+  </table>
+</div>
+
+  
+{%endblock%}

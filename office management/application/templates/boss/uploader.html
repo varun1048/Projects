@@ -1,0 +1,19 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'boss/navbar.html'%}
+<div class="container text-center ">
+    <div class="d-flex justify-content-center">
+        <h1>{{data['name']}} <span class="text-muted h5"> {{by_type}} </span></h1>
+
+
+    </div>
+    <div class="d-flex justify-content-center">
+
+        <ul class="list-group " style="width: 400px;">
+            <li class="list-group-item d-flex justify-content-between align-items-center">A list item<span class="h5">14</span>
+            </li>
+
+        </ul>
+    </div>
+</div>
+{%endblock%}

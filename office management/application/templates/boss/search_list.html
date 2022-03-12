@@ -1,0 +1,50 @@
+{%extends 'layout.html'%}
+{%block content%}
+{% include 'boss/navbar.html'%}
+<nav class="navbar m-1   members_attendance " >
+    <div class="container-fluid">
+    <div class="navbar ">
+       <h3>Search  {{documents | length}}</h3>
+    </div>
+
+      <div class="d-flex">
+        <ul class="nav nav-pills nav-fill "  >
+
+
+        </ul>
+        
+
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th >  Type</th>
+
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+      {%for data in documents%}
+      <tr onclick="window.location='/boss/{{data.type}}/{{data.documents._id}}' ">
+        <th scope="row">{{data.documents.name}}</th>
+        <th scope="row">{{data.type}}</th>
+
+      </tr>
+      {%endfor%}
+
+    </tbody>
+
+
+  </table>
+</div>
+
+  
+{%endblock%}
